@@ -2,8 +2,8 @@ import cosas.*
 
 object casaDePepeYJulian {
     var property cosasCompradas = [] 
-    var cuenta = cuentaCorriente
-    const cantComidasAComprar = 2
+    var property cuenta = cuentaCorriente
+    var property cantComidasAComprar = 2
 
     method comprar(cosa) {
     self.extraer(cosa.precio())
@@ -50,11 +50,7 @@ object casaDePepeYJulian {
     method malaEpoca() {
         return cosasCompradas.all({cosa => cosa.esComestible()})
     }
-/*
-    method esDeCategoria(cosa,categoria) {
-        return cosa.categoria()== categoria
-    }
-*/
+
     method queFaltaComprar(lista){
         return  lista.filter({cosa =>not  cosasCompradas.contains(cosa)})
     } 
@@ -82,9 +78,6 @@ object casaDePepeYJulian {
         return cuenta.saldo()
     } 
 
-    method cambiarCuenta(_cuenta){
-        cuenta = _cuenta
-    }
     } 
 
 object cuentaCorriente {

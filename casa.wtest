@@ -38,7 +38,7 @@ test "Caso de Prueba Cuenta corriente" {
 }
 
 test "Caso de Prueba Cuenta con gastos" {
-    casaDePepeYJulian.cambiarCuenta(cuentaConGastos)
+    casaDePepeYJulian.cuenta(cuentaConGastos)
     casaDePepeYJulian.depositar(1000)
     assert.equals(1480, casaDePepeYJulian.saldo())
     casaDePepeYJulian.extraer(30)
