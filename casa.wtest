@@ -1,0 +1,55 @@
+import casa.* 
+import cosas.*
+
+describe "Ejemplo"{
+
+test "Compraron en la casa una heladera,una cama y una plancha"{
+    casaDePepeYJulian.depositar(50000)
+    casaDePepeYJulian.comprar(heladera)
+    casaDePepeYJulian.comprar(cama)
+    casaDePepeYJulian.comprar(plancha)
+
+    assert.equals(3,casaDePepeYJulian.cantidadDeCosasCompradas())
+
+    assert.equals(true, casaDePepeYJulian.tieneAlgun(electrodomestico))
+
+    assert.equals(true, casaDePepeYJulian.tieneAlgun(mueble))
+    assert.equals(false, casaDePepeYJulian.tieneAlgun(comida))
+    assert.equals(true, casaDePepeYJulian.vieneDeComprar(electrodomestico))
+    assert.equals(true, casaDePepeYJulian.vieneDeComprar(electrodomestico))
+    assert.equals(true, casaDePepeYJulian.esDerrochona())
+    assert.equals([heladera,plancha], casaDePepeYJulian.comprados(electrodomestico))   
+    assert.equals([cama], casaDePepeYJulian.comprados(mueble))   
+    assert.equals([],casaDePepeYJulian.comidasCompradas())
+    assert.equals(false, casaDePepeYJulian.malaEpoca())
+    assert.equals([tiraDeAsado,paqueteDeFideos], casaDePepeYJulian.queFaltaComprar([tiraDeAsado,plancha,paqueteDeFideos]))
+    assert.equals(true,casaDePepeYJulian.faltaComida())
+    assert.equals(#{electrodomestico,mueble}, casaDePepeYJulian.categoriasCompradas())
+
+}
+
+test "Caso de Prueba Cuenta corriente" {
+    casaDePepeYJulian.depositar(1000)
+    assert.equals(1020, casaDePepeYJulian.saldo())
+    casaDePepeYJulian.extraer(50)
+    assert.equals(970, casaDePepeYJulian.saldo())
+    assert.throwsException({casaDePepeYJulian.extraer(2000)})
+
+}
+
+test "Caso de Prueba Cuenta con gastos" {
+    casaDePepeYJulian.cambiarCuenta(cuentaConGastos)
+    casaDePepeYJulian.depositar(1000)
+    assert.equals(1480, casaDePepeYJulian.saldo())
+    casaDePepeYJulian.extraer(30)
+    assert.equals(1450, casaDePepeYJulian.saldo())
+    assert.throwsException({casaDePepeYJulian.depositar(2000)})
+    assert.equals(1450, casaDePepeYJulian.saldo())
+    casaDePepeYJulian.extraer(2000)
+    assert.equals(-550, casaDePepeYJulian.saldo())
+
+
+}
+
+
+}
