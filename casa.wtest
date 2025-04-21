@@ -11,19 +11,19 @@ test "Compraron en la casa una heladera,una cama y una plancha"{
 
     assert.equals(3,casaDePepeYJulian.cantidadDeCosasCompradas())
 
-    assert.equals(true, casaDePepeYJulian.tieneAlgun(electrodomestico))
+    assert.that(casaDePepeYJulian.tieneAlgun(electrodomestico))
 
-    assert.equals(true, casaDePepeYJulian.tieneAlgun(mueble))
-    assert.equals(false, casaDePepeYJulian.tieneAlgun(comida))
-    assert.equals(true, casaDePepeYJulian.vieneDeComprar(electrodomestico))
-    assert.equals(true, casaDePepeYJulian.vieneDeComprar(electrodomestico))
-    assert.equals(true, casaDePepeYJulian.esDerrochona())
+    assert.that( casaDePepeYJulian.tieneAlgun(mueble))
+    assert.notThat(casaDePepeYJulian.tieneAlgun(comida))
+    assert.that  (casaDePepeYJulian.vieneDeComprar(electrodomestico))
+    assert.that  (casaDePepeYJulian.vieneDeComprar(electrodomestico))
+    assert.that  (casaDePepeYJulian.esDerrochona())
     assert.equals([heladera,plancha], casaDePepeYJulian.comprados(electrodomestico))   
     assert.equals([cama], casaDePepeYJulian.comprados(mueble))   
     assert.equals([],casaDePepeYJulian.comidasCompradas())
-    assert.equals(false, casaDePepeYJulian.malaEpoca())
+    assert.notThat(casaDePepeYJulian.malaEpoca())
     assert.equals([tiraDeAsado,paqueteDeFideos], casaDePepeYJulian.queFaltaComprar([tiraDeAsado,plancha,paqueteDeFideos]))
-    assert.equals(true,casaDePepeYJulian.faltaComida())
+    assert.that(casaDePepeYJulian.faltaComida())
     assert.equals(#{electrodomestico,mueble}, casaDePepeYJulian.categoriasCompradas())
 
 }

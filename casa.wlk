@@ -24,9 +24,17 @@ object casaDePepeYJulian {
     } 
 
     method vieneDeComprar(categoria){ 
-        return if (cosasCompradas.isEmpty()) false else 
-            cosasCompradas.last().categoria() == categoria
+      //  return if (cosasCompradas.isEmpty()) false else       miedo al booleano, el false 
+      //      cosasCompradas.last().categoria() == categoria    ya lo da el categoria()= categoria
+        self.validarVieneDeComprar()
+        return cosasCompradas.last().categoria() == categoria
     } 
+
+    method validarVieneDeComprar() {
+        if (cosasCompradas.isEmpty()) {
+        self.error ("Todavia no compraste nada") 
+        }
+    }
 
     method esDerrochona(){
         return cosasCompradas.sum({cosa => cosa.precio()}) > 9000
