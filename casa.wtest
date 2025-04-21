@@ -1,0 +1,55 @@
+import casa.* 
+import cosas.*
+
+describe "Ejemplo"{
+
+test "Compraron en la casa una heladera,una cama y una plancha"{
+    casaDePepeYJulian.depositar(50000)
+    casaDePepeYJulian.comprar(heladera)
+    casaDePepeYJulian.comprar(cama)
+    casaDePepeYJulian.comprar(plancha)
+
+    assert.equals(3,casaDePepeYJulian.cantidadDeCosasCompradas())
+
+    assert.that(casaDePepeYJulian.tieneAlgun(electrodomestico))
+
+    assert.that( casaDePepeYJulian.tieneAlgun(mueble))
+    assert.notThat(casaDePepeYJulian.tieneAlgun(comida))
+    assert.that  (casaDePepeYJulian.vieneDeComprar(electrodomestico))
+    assert.that  (casaDePepeYJulian.vieneDeComprar(electrodomestico))
+    assert.that  (casaDePepeYJulian.esDerrochona())
+    assert.equals([heladera,plancha], casaDePepeYJulian.comprados(electrodomestico))   
+    assert.equals([cama], casaDePepeYJulian.comprados(mueble))   
+    assert.equals([],casaDePepeYJulian.comidasCompradas())
+    assert.notThat(casaDePepeYJulian.malaEpoca())
+    assert.equals([tiraDeAsado,paqueteDeFideos], casaDePepeYJulian.queFaltaComprar([tiraDeAsado,plancha,paqueteDeFideos]))
+    assert.that(casaDePepeYJulian.faltaComida())
+    assert.equals(#{electrodomestico,mueble}, casaDePepeYJulian.categoriasCompradas())
+
+}
+
+test "Caso de Prueba Cuenta corriente" {
+    casaDePepeYJulian.depositar(1000)
+    assert.equals(1020, casaDePepeYJulian.saldo())
+    casaDePepeYJulian.extraer(50)
+    assert.equals(970, casaDePepeYJulian.saldo())
+    assert.throwsException({casaDePepeYJulian.extraer(2000)})
+
+}
+
+test "Caso de Prueba Cuenta con gastos" {
+    casaDePepeYJulian.cuenta(cuentaConGastos)
+    casaDePepeYJulian.depositar(1000)
+    assert.equals(1480, casaDePepeYJulian.saldo())
+    casaDePepeYJulian.extraer(30)
+    assert.equals(1450, casaDePepeYJulian.saldo())
+    assert.throwsException({casaDePepeYJulian.depositar(2000)})
+    assert.equals(1450, casaDePepeYJulian.saldo())
+    casaDePepeYJulian.extraer(2000)
+    assert.equals(-550, casaDePepeYJulian.saldo())
+
+
+}
+
+
+}
